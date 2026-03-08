@@ -24,16 +24,16 @@ The project follows a modular ETL (Extract, Transform, Load) and Simulation flow
 ### Results (10-Year Simulation)
 *Simulation Parameters: $250 weekly contribution, $1 fixed broker commission per trade. Buy signal triggered when price is within +10% or strictly below the 200-Week EMA.*
 
- --- RANKING FINAL DE ESTRATEGIAS (10 A�OS) --- 
-Ticker  ROI_EMA_%  ROI_DCA_%  Diferencia_%  Max_Drawdown_EMA_%  Max_Drawdown_DCA_%
-  GGAL     237.74     230.88          6.86              -74.58              -74.33
-   VOO     125.03     118.42          6.61              -24.74              -30.25
-  QQQM      66.77      60.93          5.84              -14.12              -19.43
-  VXUS      80.07      78.09          1.98              -30.03              -30.62
-   PAM     171.92     188.71        -16.79              -61.59              -63.79
-   YPF     237.98     261.91        -23.93              -73.44              -73.22
-  MSFT      76.00     184.27       -108.27              -22.67              -31.26
-  MELI      63.31     242.39       -179.08              -49.05              -65.93
+| Ticker | ROI EMA % | ROI DCA % | Alpha (Diff %) | Max Drawdown EMA % | Max Drawdown DCA % |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **GGAL** | 237.74 | 230.88 | +6.86 | -74.58 | -74.33 |
+| **VOO** | 125.03 | 118.42 | +6.61 | -24.74 | -30.25 |
+| **QQQM** | 66.77  | 60.93  | +5.84 | -14.12 | -19.43 |
+| **VXUS** | 80.07  | 78.09  | +1.98 | -30.03 | -30.62 |
+| **PAM** | 171.92 | 188.71 | -16.79| -61.59 | -63.79 |
+| **YPF** | 237.98 | 261.91 | -23.93| -73.44 | -73.22 |
+| **MSFT** | 76.00  | 184.27 | -108.27| -22.67 | -31.26 |
+| **MELI** | 63.31  | 242.39 | -179.08| -49.05 | -65.93 |
 
 **Key Findings:** The EMA 200W strategy successfully generates Alpha and reduces Max Drawdown in broad market indices (VOO, QQQM). However, in aggressive growth stocks (MSFT, MELI), the strategy heavily underperforms DCA due to the lack of major price corrections, although it provides a significantly stronger cash buffer during market crashes.
 
