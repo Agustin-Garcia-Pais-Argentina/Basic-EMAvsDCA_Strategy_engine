@@ -13,7 +13,20 @@ The system is designed with a modular architecture, focusing on separation of co
 
 
 
-### Architecture & Pipeline
+### Architecture & Pipeline   
+
+```mermaid
+graph TD
+    A[(Yahoo Finance API)] -->|Extract: Incremental Load| B(Raw Parquet Files)
+    B -->|Transform: Clean & Merge| C(Master Dataset)
+    C -->|Feature Eng: Calculate EMAs| D(Market Features Dataset)
+    D -->|Simulate: Cash Flow & Rules| E{Value Strategy Engine}
+    E -->|Analyze| F[Performance & Risk Metrics]
+    
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style E fill:#bbf,stroke:#333,stroke-width:2px
+    style F fill:#bfb,stroke:#333,stroke-width:2px
+```
 The project follows a modular ETL (Extract, Transform, Load) and Simulation flow:
 1. **`ingest.py` (Extract):** Smart incremental data loading using the `yfinance` API. It checks local `.parquet` files and only downloads missing days to optimize network and API usage.
 2. **`transform.py` (Transform/Load):** Merges individual asset data into a unified, flat MultiIndex Master Dataset using `pyarrow` for high-performance I/O.
