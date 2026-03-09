@@ -23,9 +23,9 @@ graph TD
     D -->|Simulate: Cash Flow & Rules| E{Value Strategy Engine}
     E -->|Analyze| F[Performance & Risk Metrics]
     
-    style A fill:##452445,stroke:#333,stroke-width:2px
+    style A fill:#452445,stroke:#333,stroke-width:2px
     style E fill:#1d141f,stroke:#333,stroke-width:2px
-    style F fill:##516e51,stroke:#333,stroke-width:2px
+    style F fill:#516e51,stroke:#333,stroke-width:2px
 ```
 The project follows a modular ETL (Extract, Transform, Load) and Simulation flow:
 1. **`ingest.py` (Extract):** Smart incremental data loading using the `yfinance` API. It checks local `.parquet` files and only downloads missing days to optimize network and API usage.
