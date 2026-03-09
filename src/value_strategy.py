@@ -54,7 +54,7 @@ def run_weekly_strategy(df_master, ticker, aporte_semanal = 250.0, comision_usd 
     # 3. SIMULACIÓN DE ESTRATEGIA SEMANAL
 
     # Calculo de senales y precios de compra
-    df_weekly["Signal_W"] = (((df_weekly['Close'] - df_weekly['EMA_200W']) / df_weekly['EMA_200W']) <= 0.10).astype(int)
+    df_weekly["Signal_W"] = (((df_weekly['Close'] - df_weekly['EMA_200W']) / df_weekly['EMA_200W']) <= 0.125).astype(int)
     df_weekly["Buy_Price"] = df_weekly['Open'].shift(-1)
     df_weekly.dropna(inplace=True)
 
