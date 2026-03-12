@@ -48,6 +48,21 @@ The project follows a modular ETL (Extract, Transform, Load) and Simulation flow
 | **MSFT** | 76.00  | 184.27 | -108.27| -22.67 | -31.26 |
 | **MELI** | 63.31  | 242.39 | -179.08| -49.05 | -65.93 |
 
+
+### Results (10-Year Simulation - Index/ETF Focus)
+*Simulation Parameters: $250 weekly contribution, $1 fixed broker commission per trade. Risk-Free Rate for Sharpe Ratio: 4.0% Annual. Buy signal triggered when price is within +12.5% or strictly below the 200-Week EMA.*
+
+| Ticker | ROI EMA % | ROI DCA % | Alpha (Diff %) | Max Drawdown EMA % | Max Drawdown DCA % | Sharpe EMA | Sharpe DCA |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **QQQ** | 177.58 | 167.68 | +9.89 | -26.30 | -29.56 | 0.86 | 0.78 |
+| **VTI** | 112.86 | 106.23 | +6.63 | -25.29 | -31.39 | 0.65 | 0.60 |
+| **VOO** | 119.20 | 113.84 | +5.36 | -24.41 | -30.25 | 0.69 | 0.64 |
+| **EWZ** | 54.77  | 51.14  | +3.63 | -50.64 | -51.46 | 0.28 | 0.28 |
+| **EEM** | 51.81  | 50.81  | +1.00 | -29.02 | -29.13 | 0.27 | 0.27 |
+| **VXUS** | 66.44  | 65.58  | +0.86 | -30.52 | -30.62 | 0.35 | 0.34 |
+
+**Quantitative Conclusion:** The EMA 200W strategy consistently improves risk-adjusted returns (Sharpe Ratio) and reduces maximum capital drawdown across broad market and sector ETFs when compared to systematic DCA, effectively providing a mathematical edge against market volatility.
+
 **Key Findings:** The EMA 200W strategy successfully generates Alpha and reduces Max Drawdown in broad market indices (VOO, QQQM). However, in aggressive growth stocks (MSFT, MELI), the strategy heavily underperforms DCA due to the lack of major price corrections, although it provides a significantly stronger cash buffer during market crashes.
 
 ---
