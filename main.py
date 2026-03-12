@@ -7,7 +7,7 @@ import pandas as pd
 if __name__ == "__main__":
     
     # --- CONFIGURACIÓN ---
-    tickers = ['VOO', 'QQQM', 'VXUS', 'MELI', 'YPF', 'PAM', 'GGAL', 'MSFT']
+    tickers = ['VOO', 'EWZ', 'EEM', 'VXUS', 'VTI', 'QQQ']
     aporte_usd = 250.0
     
     print(" INICIANDO PIPELINE DE BACKTESTING CUANTITATIVO ")

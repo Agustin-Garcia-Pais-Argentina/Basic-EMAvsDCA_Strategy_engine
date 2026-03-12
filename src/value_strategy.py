@@ -107,6 +107,35 @@ def run_weekly_strategy(df_master, ticker, aporte_semanal = 250.0, comision_usd 
     drawdown_ema = (df_weekly['Valor_USD_EMA'] - df_weekly['Peak_EMA']) / df_weekly['Peak_EMA'] * 100
     drawdown_dca = (df_weekly['Valor_USD_DCA'] - df_weekly['Peak_DCA']) / df_weekly['Peak_DCA'] * 100
 
+    # --- Sharpe Ratio ---
+    # Aislamos el retorno real descontando la inyección de capital semanal
+    df_weekly['Valor_USD_EMA_prev'] = df_weekly['Valor_USD_EMA'].shift(1).fillna(0)
+    df_weekly['Valor_USD_DCA_prev'] = df_weekly['Valor_USD_DCA'].shift(1).fillna(0)
+
+    base_ema = df_weekly['Valor_USD_EMA_prev'] + aporte_semanal
+    base_dca = df_weekly['Valor_USD_DCA_prev'] + aporte_semanal
+
+    df_weekly['Weekly_Return_EMA'] = (df_weekly['Valor_USD_EMA'] - base_ema) / base_ema
+    df_weekly['Weekly_Return_DCA'] = (df_weekly['Valor_USD_DCA'] - base_dca) / base_dca
+
+    # --- Tasa Libre de Riesgo ---
+    # Asumimos un 4.0% anual (rendimiento conservador de Bonos del Tesoro de EE.UU.)
+    risk_free_rate_annual = 0.04 
+    
+    # Pasamos esa tasa anual a una tasa equivalente semanal
+    risk_free_rate_weekly = (1 + risk_free_rate_annual) ** (1/52) - 1 
+
+    # Exceso de retorno (Ganancia de la estrategia MENOS lo que te ganarias sin riesgo)
+    excess_return_ema = df_weekly['Weekly_Return_EMA'] - risk_free_rate_weekly
+    excess_return_dca = df_weekly['Weekly_Return_DCA'] - risk_free_rate_weekly
+
+    # Calculamos el Sharpe final anualizado
+    std_ema = df_weekly['Weekly_Return_EMA'].std()
+    sharpe_ema = (excess_return_ema.mean() / std_ema) * np.sqrt(52) if std_ema != 0 else 0
+
+    std_dca = df_weekly['Weekly_Return_DCA'].std()
+    sharpe_dca = (excess_return_dca.mean() / std_dca) * np.sqrt(52) if std_dca != 0 else 0
+
 
     #6. Final metrics
 
@@ -122,7 +151,9 @@ def run_weekly_strategy(df_master, ticker, aporte_semanal = 250.0, comision_usd 
         'ROI_DCA_%': round(roi_dca, 2),
         'Diferencia_%': round(diff, 2),
         'Max_Drawdown_EMA_%': round(max_dd_ema, 2),
-        'Max_Drawdown_DCA_%': round(max_dd_dca, 2)
+        'Max_Drawdown_DCA_%': round(max_dd_dca, 2),
+        'Sharpe_EMA': round(sharpe_ema, 2),
+        'Sharpe_DCA': round(sharpe_dca, 2)
     }
 
 
